@@ -1,6 +1,5 @@
 package io.github.keebler17.cpu.control;
 
-import io.github.keebler17.cpu.Bus;
 import io.github.keebler17.cpu.CPU;
 import io.github.keebler17.cpu.Clock;
 import io.github.keebler17.cpu.ram.RAM;
@@ -9,7 +8,6 @@ import io.github.keebler17.cpu.register.Register;
 public class MicrocodeExecutor {
 	public static void executeMicrocode() {
 		CPU.ir.setEnable(true);
-		System.out.println(InstructionType.values()[instruction] + " " + CPU.ar.getData());
 		switch(InstructionType.values()[instruction]) {
 		case NOP:
 			CPU.pc.setEnable(true);

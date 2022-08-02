@@ -34,18 +34,22 @@ public class CPU {
 	
 	public static void main(String[] args) throws IOException {
 		
+		String fileName;
+		
 		Scanner s = new Scanner(System.in);
 		System.out.println("Have you pre-loaded a program? [Y/n]");
 		if(s.nextLine().equalsIgnoreCase("n")) {
-			File f = new File("program");
+			System.out.print("Save as: ");
+			fileName = s.nextLine();
+			File f = new File(fileName);
 			if(!f.delete() || !f.createNewFile()) System.exit(1);
 			
-			System.out.println("Input hexadecimal unsigned bytes to write to the program. When you are done, type EOF. Other inputs will be rejected.");
+			System.out.println("Input hexadecimal unsigned bytes to write to the program. When you are done, type DONE. Other inputs will be rejected.");
 			FileOutputStream out = new FileOutputStream(f);
 			System.out.println("0x00: ");
 			String in = s.nextLine();
 			int p = 1;
-			while(!in.equalsIgnoreCase("EOF")) {
+			while(!in.equalsIgnoreCase("DONE")) {
 				try {
 					if(Integer.valueOf(in, 16) < 0 || 255 < Integer.valueOf(in, 16)) throw new IllegalArgumentException();
 					if(127 < Integer.valueOf(in, 16)) in = String.valueOf(Integer.valueOf(in, 16)-0xFF);
@@ -60,9 +64,12 @@ public class CPU {
 			out.flush();
 			out.close();
 			s.close();
+		} else {
+			System.out.print("Type the name of the program: ");
+			fileName = s.nextLine();
 		}
 		
-		program = new FileInputStream(new File("program"));
+		program = new FileInputStream(new File(fileName));
 		
 		System.out.println("Reading program...");
 		int ramPointer = 0x00;

@@ -7,6 +7,6 @@ public class OutputRegister extends Register {
 	
 	@Override
 	protected void enable() {
-		System.out.println((char)data);
+		System.out.print((char)data);
 	}
 }
