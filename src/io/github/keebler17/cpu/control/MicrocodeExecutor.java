@@ -67,15 +67,15 @@ public class MicrocodeExecutor {
 			CPU.o.setEnable(false);
 			break;
 		case JMP:
-//			CPU.ar.setEnable(true);
-//			CPU.mar.setLoad(true);
-//			Clock.clock();
-//			CPU.mar.setEnable(true);
-//			RAM.read();
-//			CPU.pc.setLoad(true);
-//			Clock.clock();
-//			CPU.mar.setEnable(false);
-//			CPU.pc.setLoad(false);
+			CPU.ar.setEnable(true);
+			CPU.mar.setLoad(true);
+			Clock.clock();
+			CPU.mar.setEnable(true);
+			RAM.read();
+			CPU.pc.setLoad(true);
+			Clock.clock();
+			CPU.mar.setEnable(false);
+			CPU.pc.setLoad(false);
 			break;
 		case HLT:
 			break;
